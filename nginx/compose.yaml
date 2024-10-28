@@ -1,0 +1,21 @@
+services:
+  lab-nginx:
+    image: ubuntu-lab
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ubuntu-lab-nginx
+    tty: true
+    privileged: true
+    networks:
+      - noble_network
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx-data/nginx.conf:/etc/nginx/nginx.conf
+
+
+networks:
+  noble_network:
+    driver: bridge
